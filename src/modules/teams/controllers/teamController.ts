@@ -49,4 +49,16 @@ export class TeamController {
             res.status(500).json({error})
         }
     }
+
+    async addPlayer(req: Request, res: Response) {
+        try{
+            const {body} = req
+            const {idTeam, idPlayer} = body
+            const result = await this.teamService.addPlayer(idTeam, idPlayer)
+            res.status(200).json(result)
+
+        }catch (error: any) {
+            res.status(500).json({error})
+        }
+    }
 }

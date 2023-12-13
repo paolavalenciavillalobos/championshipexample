@@ -8,4 +8,5 @@ export interface ITeamService {
     getById(id: string): Promise<Team>
     update(id: string, data: UpdateTeamDto): Promise<Team>
     softDelete(id: string): Promise<Team>
+    addPlayer(idTeam: string, idPlayer: string): Promise<Team>
 }

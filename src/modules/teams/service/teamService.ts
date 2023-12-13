@@ -27,4 +27,9 @@ export class TeamService implements ITeamService {
         const deleteTeam = this.teamRepository.softDelete(id)
         return deleteTeam
     }
+
+    async addPlayer (idTeam: string, idPlayer: string): Promise<Team> {
+        const team = await this.teamRepository.addPlayer(idTeam, idPlayer)
+        return team
+    }
 }

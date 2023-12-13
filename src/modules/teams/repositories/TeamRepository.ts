@@ -16,7 +16,7 @@ export class TeamRepository implements ITeamRepository {
         return newTeam
     }
     async getAll(): Promise<Array<Team>> { //<team[]>
-        const allTeams = await this.teamModel.find({deletedAt: null})
+        const allTeams = await this.teamModel.find({deletedAt: null}).populate('players')
         if(!allTeams){
             throw new Error('error: cant find all teams')   
         }
@@ -63,6 +63,14 @@ export class TeamRepository implements ITeamRepository {
             throw new Error('cant delete team')
         }
         return deletedTeam
+    }
+
+    async addPlayer(idTeam: string, idPlayer: string) {
+        const team = await this.teamModel.findById(idTeam, {$push: {players: idPlayer}}, {new: true})
+        if(!team) {
+            throw new Error ('error to update')
+        } return team
+
     }
 }
 

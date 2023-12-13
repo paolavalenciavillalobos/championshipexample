@@ -1,4 +1,4 @@
-import { InferSchemaType, Model, Schema, model } from "mongoose";
+import { InferSchemaType, Model, Schema, Types, model } from "mongoose";
 
 const teamSchema = new Schema({
     name: {
@@ -24,7 +24,8 @@ const teamSchema = new Schema({
         type: Date,
         required: false, //no required
         default: null
-    }
+    },
+    players: [{type: Types.ObjectId, ref: 'Player'}]
 }, {
     timestamps: true
 })
